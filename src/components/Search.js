@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import axios from 'axios';
+
 
 
 const Search = () => {
@@ -9,7 +9,7 @@ const Search = () => {
 
   useEffect(() => {
     const searchWikipedia = async () => {
-      const { data } = await axios.get('https://en.wikipedia.org/w/api.php', {
+      const { data } = await Axios.get('https://en.wikipedia.org/w/api.php', {
         params: {
           action: 'query',
           list: 'search',
