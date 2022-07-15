@@ -3,7 +3,8 @@ import Accordion from './components/Accordion';
 import Search from './components/Search';
 import Dropdown from './components/Dropdown';
 import Translate from './components/Translate';
-import Convert from './components/Convert';
+import Route from './components/Route';
+import Header from './components/Header'
 
 const items = [
   {
@@ -37,20 +38,28 @@ const options = [
 
 /* eslint import/no-anonymous-default-export: [2, {"allowArrowFunction": true}] */
 export default () => {
-  // const [selected, setSelected] = useState(options[0]);
-  // const [showDropdown, setShowDropdown] = useState(true);
+  const [selected, setSelected] = useState(options[0]);
 
   return (
-    // <div>
-    //   <button onClick={() => setShowDropdown(!showDropdown)}>Toggle Dropdown</button>
-    //   {showDropdown ?
-    //     <Dropdown
-    //       options={options}
-    //       selected={selected}
-    //       onSelectedChange={setSelected}
-    //     /> : null
-    //   }
-    // </div>
-    <Translate />
+    <div>
+      <Header />
+      <Route path="/">
+        <Accordion items={items} />
+      </Route>
+      <Route path='/list'>
+        <Search />
+      </Route>
+      <Route path='/dropdown'>
+        <Dropdown
+          label='Select a Color'
+          options={options}
+          selected={selected}
+          onSelectedChange={setSelected}
+        />
+      </Route>
+      <Route path='/translate'>
+        <Translate />
+      </Route>
+    </div>
   );
 };
